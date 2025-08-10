@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionário Piloto - CIAvEx</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .column {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            color: #022d42;
+        }
+        input[type="checkbox"] {
+            transform: scale(0.8);
+            margin-right: 10px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .cronometro-container {
+            margin-bottom: 20px;
+        }
+        .cronometro-btn, .cronometro-control-btn, .zerar-btn {
+            margin-right: 5px;
+        }
+        .zerar-btn {
+            background-color: #FF9800;
+        }
+        .zerar-btn:hover {
+            background-color: #F57C00;
+        }
+        .resultado-final {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .resultado-final h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #022d42;
+        }
+        .resultado-final .nota-final {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        /* Estilo dinâmico para status */
+        .status span.aprovado {
+            color: green;
+            font-weight: bold;
+        }
+        .status span.reprovado {
+            color: red;
+            font-weight: bold;
+        }
+        .status span.pendente {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Coluna 1 -->
+    <div class="column">
+        <div style="text-align: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Ciavex.png" alt="Operações Aéreas" style="width: 80px;">
+            <h2>Questionário Piloto - CIAvEx</h2>
+        </div>
+        <div class="input-group"><label>QRA:</label><input type="text" id="qr" style="width:100%;"></div>
+        <div class="input-group"><label>ID:</label><input type="text" id="id" style="width:100%;"></div>
+        <div class="input-group"><label>Instrutor:</label><input type="text" id="instrutor" style="width:100%;"></div>
+        <div class="input-group"><label>Data:</label><input type="date" id="data" style="width:100%;"></div>
+        <div class="resultado-final">
+          <h3>Resultado Final:</h3>
+          <p class="nota-final">Nota Final: <span id="notaFinal">0</span> /70</p>
+          <div class="status">
+              <label>Status:</label> <span id="statusFinal" class="pendente">Pendente</span>
+          </div>
+          <div class="input-group" style="margin-top: 15px;">
+              <label for="obs">OBS:</label>
+              <textarea id="obs" placeholder="Digite observações aqui..." rows="4" style="width: 100%; resize: none;"></textarea>
+          </div>
+          <div class="input-group">
+              <label for="descontoConduta">Desconto por Falta de Conduta:</label>
+              <input type="number" id="descontoConduta" min="0" max="10" onchange="calcular()">
+          </div>
+      </div>
+    </div>
+
+    <!-- Coluna 2 -->
+    <div class="column">
+        <div class="quadro">
+            <h3>O que é o SAER e qual é sua função:</h3> <h4>R: Serviço aereo</h4>
+            <p><input type="checkbox" name="saer" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="saer" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="saer" value="4" onclick="calcular()"> Acertou tudo</p>
+        </div>
+        <div class="quadro">
+            <h3>Mostrar os 4 códigos de relógio:</h3>
+            <p><input type="checkbox" name="crime" value="1" onclick="calcular()"> Acertou 1</p>
+            <p><input type="checkbox" name="crime" value="2" onclick="calcular()"> Acertou 2</p>
+            <p><input type="checkbox" name="crime" value="3" onclick="calcular()"> Acertou 3</p>
+            <p><input type="checkbox" name="crime" value="4" onclick="calcular()"> Acertou 4</p>
+        </div>
+        <div class="quadro">
+            <h3>Quando pode abordar:</h3>
+            <p><input type="checkbox" name="abordagem" value="0" onclick="calcular()"> Não soube</p>
+            <p><input type="checkbox" name="abordagem" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="abordagem" value="4" onclick="calcular()"> Correta</p>
+        </div>
+        <div class="quadro">
+            <h3>Procedimento de abordagem de aeronave:</h3>
+            <p><input type="checkbox" name="procedimento" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="procedimento" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="procedimento" value="4" onclick="calcular()"> Correta</p>
+        </div>
+        <div class="quadro">
+            <h3>Abordagem terrestre ou veículo suspeito:</h3>
+            <p><input type="checkbox" name="abordagem_terrestre" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="abordagem_terrestre" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="abordagem_terrestre" value="4" onclick="calcular()"> Correta</p>
+        </div>
+    </div>
+
+    <!-- Coluna 3 -->
+    <div class="column">
+        <div class="cronometro-container">
+            <h3 class="timer" id="timerDisplay1">00:00</h3>
+            <button class="cronometro-btn" onclick="startCronometro('pilotagem')">Iniciar Cronômetro Pilotagem</button>
+            <button class="cronometro-control-btn" onclick="stopCronometro('pilotagem')">Parar</button>
+            <button class="zerar-btn" onclick="resetCronometro('pilotagem')">Zerar</button>
+        </div>
+
+        <div class="input-group"><label>Nota Tempo (Pilotagem):</label><input type="number" id="notaTempo1" min="0" max="10" onchange="calcular()"></div>
+        <div class="input-group"><label>Nota Pilotagem:</label><input type="number" id="nota1" min="0" max="10" onchange="calcular()"></div>
+
+        <div class="cronometro-container">
+            <h3 class="timer" id="timerDisplay2">00:00</h3>
+            <button class="cronometro-btn" onclick="startCronometro('rioZancudo')">Iniciar Cronômetro Zancudo</button>
+            <button class="cronometro-control-btn" onclick="stopCronometro('rioZancudo')">Parar</button>
+            <button class="zerar-btn" onclick="resetCronometro('rioZancudo')">Zerar</button>
+        </div>
+
+        <div class="input-group"><label>Nota Rio Zancudo:</label><input type="number" id="nota4" min="0" max="10" onchange="calcular()"></div>
+        <div class="input-group"><label>Nota Pilotagem Ofensiva:</label><input type="number" id="notaOfensiva" min="0" max="10" onchange="calcular()"></div>
+        <div class="input-group"><label>Nota Pilotagem Defensiva:</label><input type="number" id="notaDefensiva" min="0" max="10" onchange="calcular()"></div>
+
+        <button class="zerar-btn" onclick="limparTudo()">Limpar Tudo</button>
+    </div>
+</div>
+
+<script>
+function calcular() {
+    let getCheckedValue = (name) => {
+        let checkboxes = document.getElementsByName(name);
+        for (let cb of checkboxes) {
+            if (cb.checked) return parseFloat(cb.value);
+        }
+        return 0;
+    };
+
+    let somaQuestoes = getCheckedValue('saer') + getCheckedValue('crime') +
+        getCheckedValue('abordagem') + getCheckedValue('procedimento') + getCheckedValue('abordagem_terrestre');
+
+    let nota1 = parseFloat(document.getElementById("nota1").value) || 0;
+    let notaTempo1 = parseFloat(document.getElementById("notaTempo1").value) || 0;
+    let notaOfensiva = parseFloat(document.getElementById("notaOfensiva").value) || 0;
+    let notaDefensiva = parseFloat(document.getElementById("notaDefensiva").value) || 0;
+    let nota4 = parseFloat(document.getElementById("nota4").value) || 0;
+    let descontoConduta = parseFloat(document.getElementById("descontoConduta").value) || 0;
+
+    let total = somaQuestoes + nota1 + notaTempo1 + notaOfensiva + notaDefensiva + nota4 - descontoConduta;
+    let final = Math.min(total, 70);
+
+    document.getElementById("notaFinal").textContent = final.toFixed(2);
+    const statusEl = document.getElementById("statusFinal");
+
+    if (final >= 50) {
+        statusEl.textContent = "Aprovado";
+        statusEl.className = "aprovado";
+    } else {
+        statusEl.textContent = "Reprovado";
+        statusEl.className = "reprovado";
+    }
+}
+
+function limparTudo() {
+    document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(el => el.value = '');
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.getElementById("notaFinal").textContent = "0";
+    let statusEl = document.getElementById("statusFinal");
+    statusEl.textContent = "Pendente";
+    statusEl.className = "pendente";
+    resetCronometro('pilotagem');
+    resetCronometro('rioZancudo');
+}
+
+const timers = {
+    pilotagem: { seconds: 0, interval: null },
+    rioZancudo: { seconds: 0, interval: null }
+};
+
+function startCronometro(tipo) {
+    if (timers[tipo].interval) return;
+    timers[tipo].interval = setInterval(() => {
+        timers[tipo].seconds++;
+        const display = document.getElementById(`timerDisplay${tipo === 'pilotagem' ? '1' : '2'}`);
+        let min = Math.floor(timers[tipo].seconds / 60);
+        let sec = timers[tipo].seconds % 60;
+        display.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    }, 1000);
+}
+
+function stopCronometro(tipo) {
+    clearInterval(timers[tipo].interval);
+    timers[tipo].interval = null;
+}
+
+function resetCronometro(tipo) {
+    clearInterval(timers[tipo].interval);
+    timers[tipo].interval = null;
+    timers[tipo].seconds = 0;
+    const display = document.getElementById(`timerDisplay${tipo === 'pilotagem' ? '1' : '2'}`);
+    display.textContent = "00:00";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionário Atirador - CIAvEx</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .column {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+            color: #022d42;
+        }
+        input[type="checkbox"] {
+            transform: scale(0.8);
+            margin-right: 10px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .cronometro-container {
+            margin-bottom: 20px;
+        }
+        .cronometro-btn, .cronometro-control-btn, .zerar-btn {
+            margin-right: 5px;
+        }
+        .zerar-btn {
+            background-color: #FF9800;
+        }
+        .zerar-btn:hover {
+            background-color: #F57C00;
+        }
+        .resultado-final {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .resultado-final h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #022d42;
+        }
+        .resultado-final .nota-final {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        /* Negrito na coluna 4 */
+        .column.bold-content label,
+        .column.bold-content input {
+            font-weight: bold;
+        }
+
+        /* Novas classes para status colorido */
+        .status span.aprovado {
+            color: green;
+            font-weight: bold;
+        }
+        .status span.reprovado {
+            color: red;
+            font-weight: bold;
+        }
+        .status span.pendente {
+            color: orange;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Coluna 1 -->
+    <div class="column">
+        <div style="text-align: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Ciavex.png" alt="Operações Aéreas" style="width: 80px;">
+            <h2>Questionário Tiro Aereo - CIAvEx</h2>
+        </div>
+        <div class="input-group"><label>QRA:</label><input type="text" id="qr" style="width:100%;"></div>
+        <div class="input-group"><label>ID:</label><input type="text" id="id" style="width:100%;"></div>
+        <div class="input-group"><label>Instrutor:</label><input type="text" id="instrutor" style="width:100%;"></div>
+        <div class="input-group"><label>Data:</label><input type="date" id="data" style="width:100%;"></div>
+        <div class="resultado-final">
+            <h3>Resultado Final:</h3>
+            <p class="nota-final">Nota Final: <span id="notaFinal">0</span> /116</p>
+            <div class="status">
+                <label>Status:</label> <span id="statusFinal" class="pendente">Pendente</span>
+            </div>
+            <div class="input-group" style="margin-top: 15px;">
+                <label for="obs">OBS:</label>
+                <textarea id="obs" placeholder="Digite observações aqui..." rows="4" style="width: 100%; resize: none;"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="descontoConduta">Desconto por Falta de Conduta:</label>
+                <input type="number" id="descontoConduta" min="0" max="10" onchange="calcular()">
+            </div>
+        </div>
+    </div>
+
+    <!-- Coluna 2 -->
+    <div class="column">
+        <div class="quadro">
+            <h3>O que é o SAER e qual é sua função:</h3>
+            <p><input type="checkbox" name="saer" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="saer" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="saer" value="4" onclick="calcular()"> Acertou tudo</p>
+        </div>
+        <div class="quadro">
+            <h3>Mostrar os 4 códigos de relógio:</h3>
+            <p><input type="checkbox" name="crime" value="1" onclick="calcular()"> Acertou 1</p>
+            <p><input type="checkbox" name="crime" value="2" onclick="calcular()"> Acertou 2</p>
+            <p><input type="checkbox" name="crime" value="3" onclick="calcular()"> Acertou 3</p>
+            <p><input type="checkbox" name="crime" value="4" onclick="calcular()"> Acertou 4</p>
+        </div>
+        <div class="quadro">
+            <h3>Quando pode abordar:</h3>
+            <p><input type="checkbox" name="abordagem" value="0" onclick="calcular()"> Não soube</p>
+            <p><input type="checkbox" name="abordagem" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="abordagem" value="4" onclick="calcular()"> Correta</p>
+        </div>
+        <div class="quadro">
+            <h3>Procedimento de abordagem de aeronave:</h3>
+            <p><input type="checkbox" name="procedimento" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="procedimento" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="procedimento" value="4" onclick="calcular()"> Correta</p>
+        </div>
+        <div class="quadro">
+            <h3>Abordagem terrestre ou veículo suspeito:</h3>
+            <p><input type="checkbox" name="abordagem_terrestre" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="abordagem_terrestre" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="abordagem_terrestre" value="4" onclick="calcular()"> Correta</p>
+        </div>
+    </div>
+
+    <!-- Coluna 3 -->
+    <div class="column">
+        <div class="input-group">
+            <h3>Quais são os armamentos padrão do SAER:</h3>
+            <p><input type="checkbox" name="armamento" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="armamento" value="4" onclick="calcular()"> Acertou tudo</p>
+        </div>
+        <div class="input-group">
+            <h3>Peça ao conscrito que suba na posição de A1 da aeronave:</h3>
+            <p><input type="checkbox" name="a1" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="a1" value="4" onclick="calcular()"> Soube onde e o A1</p>
+        </div>
+        <div class="input-group">
+            <h3>Module o início de cod.0 do SAER:</h3>
+            <p><input type="checkbox" name="modulacao1" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="modulacao1" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="modulacao1" value="4" onclick="calcular()"> Modulação Perfeita</p>
+        </div>
+        <div class="input-group">
+            <h3>Module que o SAER está a caminho de uma ocorrência de disparos:</h3>
+            <p><input type="checkbox" name="modulacao2" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="modulacao2" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="modulacao2" value="4" onclick="calcular()"> Modulação Perfeita</p>
+        </div>
+    </div>
+
+    <!-- Coluna 4 -->
+    <div class="column bold-content">
+        <!-- Imagem e título -->
+        <div style="text-align: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Ciavex.png" alt="Operações Aéreas" style="width: 80px;">
+            <h3>Questionário Atirador CIAvEx (Prático)</h3>
+        </div>
+        <div class="input-group">
+            <label>Nota - Modulação Aérea:</label>
+            <input type="number" id="notaModAerea" min="0" max="10" onchange="calcular()">
+        </div>
+        <div class="input-group">
+            <label>Nota - Modulação Código 0:</label>
+            <input type="number" id="notaModCod0" min="0" max="10" onchange="calcular()">
+        </div>
+        <div class="input-group">
+            <label>Nota - Modulação Acompanhamento:</label>
+            <input type="number" id="notaModAcompanhamento" min="0" max="10" onchange="calcular()">
+        </div>
+        <!-- Novos campos -->
+        <div class="input-group">
+            <label>Nota - Abordagem Aérea:</label>
+            <input type="number" id="notaAbordagemAerea" min="0" max="10" onchange="calcular()">
+        </div>
+        <div class="input-group">
+            <label>Nota - Código 3 Moto:</label>
+            <input type="number" id="notaCod3Moto" min="0" max="10" onchange="calcular()">
+        </div>
+        <div class="input-group">
+            <label>Nota - Código 5 Moto:</label>
+            <input type="number" id="notaCod5Moto" min="0" max="10" onchange="calcular()">
+        </div>
+        <div class="input-group">
+            <label>Nota - Código 3 Carro:</label>
+            <input type="number" id="notaCod3Carro" min="0" max="10" onchange="calcular()">
+        </div>
+        <div class="input-group">
+            <label>Nota - Código 5 Carro:</label>
+            <input type="number" id="notaCod5Carro" min="0" max="10" onchange="calcular()">
+        </div>
+
+        <!-- Botão Limpar Tudo -->
+        <div style="text-align: center;">
+            <button type="button" onclick="limparTudo()">Limpar Tudo</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function calcular() {
+    let total = 0;
+
+    const checkboxes = [
+        'saer', 'crime', 'abordagem', 'procedimento', 'abordagem_terrestre',
+        'armamento', 'a1', 'modulacao1', 'modulacao2'
+    ];
+
+    checkboxes.forEach(nome => {
+        let opcoes = document.getElementsByName(nome);
+        for (let opcao of opcoes) {
+            if (opcao.checked) {
+                total += parseFloat(opcao.value);
+                break;
+            }
+        }
+    });
+
+    const notas = [
+        'notaModAerea', 'notaModCod0', 'notaModAcompanhamento',
+        'notaAbordagemAerea', 'notaCod3Moto', 'notaCod5Moto',
+        'notaCod3Carro', 'notaCod5Carro'
+    ];
+
+    notas.forEach(id => {
+        total += parseFloat(document.getElementById(id).value) || 0;
+    });
+
+    let pontosConduta = parseFloat(document.getElementById("descontoConduta").value) || 0;
+    total -= pontosConduta;
+    total = Math.max(0, total);
+
+    document.getElementById("notaFinal").textContent = total;
+
+    const statusEl = document.getElementById("statusFinal");
+    if (total >= 75) {
+        statusEl.textContent = "Aprovado";
+        statusEl.className = "aprovado";
+    } else if (total > 0) {
+        statusEl.textContent = "Reprovado";
+        statusEl.className = "reprovado";
+    } else {
+        statusEl.textContent = "Pendente";
+        statusEl.className = "pendente";
+    }
+}
+
+function limparTudo() {
+    document.getElementById('qr').value = '';
+    document.getElementById('id').value = '';
+    document.getElementById('instrutor').value = '';
+    document.getElementById('data').value = '';
+    document.getElementById('obs').value = '';
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+
+    const notas = [
+        'notaModAerea', 'notaModCod0', 'notaModAcompanhamento',
+        'notaAbordagemAerea', 'notaCod3Moto', 'notaCod5Moto',
+        'notaCod3Carro', 'notaCod5Carro'
+    ];
+
+    notas.forEach(id => {
+        document.getElementById(id).value = '';
+    });
+
+    document.getElementById('descontoConduta').value = '';
+    document.getElementById("notaFinal").textContent = '0';
+
+    const statusEl = document.getElementById("statusFinal");
+    statusEl.textContent = 'Pendente';
+    statusEl.className = 'pendente';
+}
+</script>
+
+</body>
+</html>
