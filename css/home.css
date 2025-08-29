@@ -30,10 +30,11 @@
   font-size: 1em;
   font-style: italic;
   margin-top: 5px;
-  
+
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -52,7 +53,8 @@ body {
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
- background-image: url("/Prova-CIAvEx/imagens/bandeira.webp"); /* substitua pelo caminho da imagem escolhida */
+  background-image: url("/Prova-CIAvEx/imagens/bandeira.webp");
+  /* substitua pelo caminho da imagem escolhida */
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -68,7 +70,7 @@ body {
   max-width: 400px;
   margin: 150px auto;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .provas-box h2 {
@@ -94,13 +96,17 @@ body {
   background-color: #272b00;
 }
 
-header, footer {
-  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro semi-transparente */
+header,
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* fundo escuro semi-transparente */
   color: #ffffff;
   text-align: center;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.6); /* camada escura */
-  background-blend-mode: overlay;       /* mistura cor com imagem */
+  background-color: rgba(0, 0, 0, 0.6);
+  /* camada escura */
+  background-blend-mode: overlay;
+  /* mistura cor com imagem */
 }
 
 .footer-container p {
@@ -186,5 +192,3 @@ header, footer {
     padding: 10px;
   }
 }
-
-
