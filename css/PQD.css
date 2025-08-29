@@ -8,6 +8,11 @@
             align-items: center;
             min-height: 100vh;
             background-color: #ffffff;
+            background-image: url("/Prova-CIAvEx/imagens/bandeira.webp");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         .container {
