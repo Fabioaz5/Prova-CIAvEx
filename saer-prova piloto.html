@@ -17,7 +17,7 @@
         }
         .container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             width: 100%;
             max-width: 1200px;
@@ -29,7 +29,7 @@
         }
         .column {
             padding: 10px;
-            border: 2px solid #ccc;
+            border: 2px solid #ff7300;
             border-radius: 10px;
             background-color: #f9f9f9;
         }
@@ -110,6 +110,10 @@
         .status span.pendente {
             color: #555;
         }
+        .frase-Resposta {
+             color: #72b817; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -145,39 +149,53 @@
     <!-- Coluna 2 -->
     <div class="column">
         <div class="quadro">
-            <h3>O que é o SAER e qual é sua função:</h3> <h4>R: Serviço aereo</h4>
+            <h3>O que significa a sigla CIAvEx?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> Centro de Instrução de Aviação do Exército
+            </h5>
             <p><input type="checkbox" name="saer" value="0" onclick="calcular()"> Não sabe</p>
             <p><input type="checkbox" name="saer" value="2" onclick="calcular()"> Resposta média</p>
             <p><input type="checkbox" name="saer" value="4" onclick="calcular()"> Acertou tudo</p>
         </div>
         <div class="quadro">
-            <h3>Mostrar os 4 códigos de relógio:</h3>
-            <p><input type="checkbox" name="crime" value="1" onclick="calcular()"> Acertou 1</p>
-            <p><input type="checkbox" name="crime" value="2" onclick="calcular()"> Acertou 2</p>
-            <p><input type="checkbox" name="crime" value="3" onclick="calcular()"> Acertou 3</p>
-            <p><input type="checkbox" name="crime" value="4" onclick="calcular()"> Acertou 4</p>
-        </div>
+            <h3>De acordo com o material, utilizando a aeronave como referência de relógio para comunicação, que hora indica o bico da aeronave?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> As 12horas/ Meio dia
+            </h5>
+            <p><input type="checkbox" name="crime" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="crime" value="2" onclick="calcular()"> Acertou</p>
+           </div>
         <div class="quadro">
-            <h3>Quando pode abordar:</h3>
+            <h3>Qual é a função do piloto e do copiloto da aeronave?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> A função do Piloto e conduzir a aeronave de maneira a zelar pela proteção da tripulação e integridade da aeronave, e o Copiloto deve fazer a operação do mapa e do rádio.
+            </h5>
+            <p><input type="checkbox" name="abordagem_terrestre" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="abordagem_terrestre" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="abordagem_terrestre" value="4" onclick="calcular()"> Correta</p>  </div>
+    </div>
+    <!-- Coluna 3 -->
+    <div class="column">
+         <div class="quadro">
+            <h3>Em uma abordagem aérea, quantos avisos são necessários antes da autorização para abater?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> 3 Avisos
+            </h5>
             <p><input type="checkbox" name="abordagem" value="0" onclick="calcular()"> Não soube</p>
             <p><input type="checkbox" name="abordagem" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="abordagem" value="4" onclick="calcular()"> Correta</p>
         </div>
         <div class="quadro">
-            <h3>Procedimento de abordagem de aeronave:</h3>
+            <h3>Em qual situação e perímetro é permitido liberar a aeronave HAITUN para oficiais que não possuam o curso de piloto?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> 
+            </h5>
             <p><input type="checkbox" name="procedimento" value="0" onclick="calcular()"> Não sabe</p>
             <p><input type="checkbox" name="procedimento" value="2" onclick="calcular()"> Resposta média</p>
             <p><input type="checkbox" name="procedimento" value="4" onclick="calcular()"> Correta</p>
         </div>
-        <div class="quadro">
-            <h3>Abordagem terrestre ou veículo suspeito:</h3>
-            <p><input type="checkbox" name="abordagem_terrestre" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="abordagem_terrestre" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="abordagem_terrestre" value="4" onclick="calcular()"> Correta</p>
-        </div>
     </div>
 
-    <!-- Coluna 3 -->
+    <!-- Coluna 4 -->
     <div class="column">
         <div class="cronometro-container">
             <h3 class="timer" id="timerDisplay1">00:00</h3>

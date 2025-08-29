@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 10vh;
             background-color: #f4f4f4;
         }
         .container {
@@ -29,7 +29,7 @@
         }
         .column {
             padding: 10px;
-            border: 2px solid #ccc;
+            border: 2px solid #ff7300;
             border-radius: 10px;
             background-color: #f9f9f9;
         }
@@ -42,7 +42,7 @@
             margin-right: 10px;
         }
         .input-group {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .input-group label {
             display: block;
@@ -117,6 +117,10 @@
             color: orange;
             font-weight: bold;
         }
+        .frase-Resposta {
+             color: #72b817; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -134,7 +138,7 @@
         <div class="input-group"><label>Data:</label><input type="date" id="data" style="width:100%;"></div>
         <div class="resultado-final">
             <h3>Resultado Final:</h3>
-            <p class="nota-final">Nota Final: <span id="notaFinal">0</span> /116</p>
+            <p class="nota-final">Nota Final: <span id="notaFinal">0</span> /70</p>
             <div class="status">
                 <label>Status:</label> <span id="statusFinal" class="pendente">Pendente</span>
             </div>
@@ -144,7 +148,7 @@
             </div>
             <div class="input-group">
                 <label for="descontoConduta">Desconto por Falta de Conduta:</label>
-                <input type="number" id="descontoConduta" min="0" max="10" onchange="calcular()">
+                <input type="number" id="descontoConduta" min="0" max="5" onchange="calcular()">
             </div>
         </div>
     </div>
@@ -152,61 +156,77 @@
     <!-- Coluna 2 -->
     <div class="column">
         <div class="quadro">
-            <h3>O que é o SAER e qual é sua função:</h3>
-            <p><input type="checkbox" name="saer" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="saer" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="saer" value="4" onclick="calcular()"> Acertou tudo</p>
+            <h3>De acordo com o material qual é a principal função do CIAvEx:</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> A função do CIAvEx é formar, capacitar e aperfeiçoar o efetivo da Aviação do Exército Brasileiro.
+            </h5>
+            <p><input type="checkbox" name="ciavex" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="ciavex" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="ciavex" value="4" onclick="calcular()"> Acertou tudo</p>
         </div>
         <div class="quadro">
             <h3>Mostrar os 4 códigos de relógio:</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> 12h, 6h, 3h, 9h
+            </h5>
             <p><input type="checkbox" name="crime" value="1" onclick="calcular()"> Acertou 1</p>
             <p><input type="checkbox" name="crime" value="2" onclick="calcular()"> Acertou 2</p>
             <p><input type="checkbox" name="crime" value="3" onclick="calcular()"> Acertou 3</p>
             <p><input type="checkbox" name="crime" value="4" onclick="calcular()"> Acertou 4</p>
         </div>
         <div class="quadro">
-            <h3>Quando pode abordar:</h3>
+            <h3>Segundo o material qual a função de um atirador aéreo?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> A função do Atirador Aéreo e proporcionar o vetor ofensivo do Águia atuando em ações de código 3 ou código 5.
+            </h5>
             <p><input type="checkbox" name="abordagem" value="0" onclick="calcular()"> Não soube</p>
             <p><input type="checkbox" name="abordagem" value="2" onclick="calcular()"> Resposta média</p>
             <p><input type="checkbox" name="abordagem" value="4" onclick="calcular()"> Correta</p>
         </div>
         <div class="quadro">
-            <h3>Procedimento de abordagem de aeronave:</h3>
-            <p><input type="checkbox" name="procedimento" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="procedimento" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="procedimento" value="4" onclick="calcular()"> Correta</p>
-        </div>
-        <div class="quadro">
-            <h3>Abordagem terrestre ou veículo suspeito:</h3>
-            <p><input type="checkbox" name="abordagem_terrestre" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="abordagem_terrestre" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="abordagem_terrestre" value="4" onclick="calcular()"> Correta</p>
-        </div>
+            <h3>Qual armamento deve ser utilizado por um atirador aéreo?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> Fuzil 762 FAL
+            </h5>
+            <p><input type="checkbox" name="armamento" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="armamento" value="2" onclick="calcular()"> Acertou</p>   </div>
     </div>
 
     <!-- Coluna 3 -->
     <div class="column">
         <div class="input-group">
-            <h3>Quais são os armamentos padrão do SAER:</h3>
-            <p><input type="checkbox" name="armamento" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="armamento" value="4" onclick="calcular()"> Acertou tudo</p>
+            <h3>Qual é o prazo máximo para se apresentar na ABA do CIAvEx após a aprovação em um curso?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> 72hrs
+            </h5>
+            <p><input type="checkbox" name="procedimento" value="0" onclick="calcular()"> Incorreta</p>
+            <p><input type="checkbox" name="procedimento" value="4" onclick="calcular()"> Correta</p>
         </div>
         <div class="input-group">
-            <h3>Peça ao conscrito que suba na posição de A1 da aeronave:</h3>
+            <h3>Em qual lado da aeronave fica o atirador principal?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> Na direita da aeronave
+            </h5>
             <p><input type="checkbox" name="a1" value="0" onclick="calcular()"> Não sabe</p>
             <p><input type="checkbox" name="a1" value="4" onclick="calcular()"> Soube onde e o A1</p>
         </div>
         <div class="input-group">
-            <h3>Module o início de cod.0 do SAER:</h3>
-            <p><input type="checkbox" name="modulacao1" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="modulacao1" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="modulacao1" value="4" onclick="calcular()"> Modulação Perfeita</p>
+            <h3>Explique oque e código 3? e quando deve ser aplicado em uma operação aérea?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> Disparo não letal aplicado em casos menos graves, quando tiros são autorizados na lataria e nos pneus do veículo alvo
+            </h5>
+            <p><input type="checkbox" name="cod3" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="cod3" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="cod3" value="4" onclick="calcular()"> Acertou tudo</p>
         </div>
         <div class="input-group">
-            <h3>Module que o SAER está a caminho de uma ocorrência de disparos:</h3>
-            <p><input type="checkbox" name="modulacao2" value="0" onclick="calcular()"> Não sabe</p>
-            <p><input type="checkbox" name="modulacao2" value="2" onclick="calcular()"> Resposta média</p>
-            <p><input type="checkbox" name="modulacao2" value="4" onclick="calcular()"> Modulação Perfeita</p>
+            <h3>Explique oque e código 5? e quando deve ser aplicado em uma operação aérea?</h3>
+            <h5>
+            <span class="frase-Resposta">R:</span> Disparo letal autorizado, sendo aplicado em casos graves.
+            </h5>
+            <p><input type="checkbox" name="cod5" value="0" onclick="calcular()"> Não sabe</p>
+            <p><input type="checkbox" name="cod5" value="2" onclick="calcular()"> Resposta média</p>
+            <p><input type="checkbox" name="cod5" value="4" onclick="calcular()"> Acertou tudo</p>
         </div>
     </div>
 
@@ -216,39 +236,40 @@
         <div style="text-align: center;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Ciavex.png" alt="Operações Aéreas" style="width: 80px;">
             <h3>Questionário Atirador CIAvEx (Prático)</h3>
+            <h4>Notas de 0 a 5, sendo 0 ruim e 5 exelente.</h4>
         </div>
         <div class="input-group">
             <label>Nota - Modulação Aérea:</label>
-            <input type="number" id="notaModAerea" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaModAerea" min="0" max="5" onchange="calcular()">
         </div>
         <div class="input-group">
             <label>Nota - Modulação Código 0:</label>
-            <input type="number" id="notaModCod0" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaModCod0" min="0" max="5" onchange="calcular()">
         </div>
         <div class="input-group">
             <label>Nota - Modulação Acompanhamento:</label>
-            <input type="number" id="notaModAcompanhamento" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaModAcompanhamento" min="0" max="5" onchange="calcular()">
         </div>
         <!-- Novos campos -->
         <div class="input-group">
             <label>Nota - Abordagem Aérea:</label>
-            <input type="number" id="notaAbordagemAerea" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaAbordagemAerea" min="0" max="5" onchange="calcular()">
         </div>
         <div class="input-group">
             <label>Nota - Código 3 Moto:</label>
-            <input type="number" id="notaCod3Moto" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaCod3Moto" min="0" max="5" onchange="calcular()">
         </div>
         <div class="input-group">
             <label>Nota - Código 5 Moto:</label>
-            <input type="number" id="notaCod5Moto" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaCod5Moto" min="0" max="5" onchange="calcular()">
         </div>
         <div class="input-group">
             <label>Nota - Código 3 Carro:</label>
-            <input type="number" id="notaCod3Carro" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaCod3Carro" min="0" max="5" onchange="calcular()">
         </div>
         <div class="input-group">
             <label>Nota - Código 5 Carro:</label>
-            <input type="number" id="notaCod5Carro" min="0" max="10" onchange="calcular()">
+            <input type="number" id="notaCod5Carro" min="0" max="5" onchange="calcular()">
         </div>
 
         <!-- Botão Limpar Tudo -->
@@ -263,8 +284,8 @@ function calcular() {
     let total = 0;
 
     const checkboxes = [
-        'saer', 'crime', 'abordagem', 'procedimento', 'abordagem_terrestre',
-        'armamento', 'a1', 'modulacao1', 'modulacao2'
+        'ciavex', 'crime', 'abordagem', 'procedimento', 'abordagem_terrestre',
+        'armamento', 'a1', 'cod3', 'cod5'
     ];
 
     checkboxes.forEach(nome => {
@@ -294,7 +315,7 @@ function calcular() {
     document.getElementById("notaFinal").textContent = total;
 
     const statusEl = document.getElementById("statusFinal");
-    if (total >= 75) {
+    if (total >= 45) {
         statusEl.textContent = "Aprovado";
         statusEl.className = "aprovado";
     } else if (total > 0) {
